@@ -1,4 +1,4 @@
-package br.com.orangetalents.MultiServico.validacao;
+package br.com.orangetalents.MultiServico.compartilhado;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -12,6 +12,6 @@ public @interface UniqueValue {
     String message() default "Error: Este valor deve ser único!";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-    String fieldName();
-    Class<?> domainClass();
+    String campo();
+    Class<?> targetClass();
 }

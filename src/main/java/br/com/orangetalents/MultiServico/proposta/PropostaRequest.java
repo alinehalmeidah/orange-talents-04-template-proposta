@@ -2,7 +2,7 @@ package br.com.orangetalents.MultiServico.proposta;
 
 
 import br.com.orangetalents.MultiServico.validacao.CPFouCNPJ;
-import br.com.orangetalents.MultiServico.validacao.UniqueValue;
+import br.com.orangetalents.MultiServico.compartilhado.UniqueValue;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -13,12 +13,12 @@ import java.math.BigDecimal;
 public class PropostaRequest {
 
 	@NotBlank @CPFouCNPJ
-	@UniqueValue(domainClass = Proposta.class, fieldName = "documento", message = "CPF ou CNPJ inválido, o valor deve ser único!")
+	@UniqueValue(targetClass = Proposta.class, campo = "documento", message = "CPF ou CNPJ inválido, o valor deve ser único!")
 	private String documento;
 
 	@NotBlank
 	@Email
-	@UniqueValue(domainClass = Proposta.class, fieldName = "email", message = "E-mail inválido, o valor deve ser único!")
+	@UniqueValue(targetClass = Proposta.class, campo = "email", message = "E-mail inválido, o valor deve ser único!")
 	private String email;
 
 	@NotBlank
