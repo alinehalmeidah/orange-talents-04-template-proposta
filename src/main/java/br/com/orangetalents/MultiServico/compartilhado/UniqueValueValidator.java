@@ -16,6 +16,7 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, St
 
     private String campo;
     private Class<?> targetClass;
+
     private Logger logger = LoggerFactory.getLogger(UniqueValueValidator.class);
 
     @PersistenceContext
@@ -31,12 +32,11 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, St
     public boolean isValid(String value, ConstraintValidatorContext context) {
         List<?> resultList = entityManager.createQuery("SELECT 1 FROM " + targetClass.getName() + " where " + campo + " = :value")
                 .setParameter("value", value).getResultList();
-        Assert.state(resultList.size() <= 1, "É prmitido apenas uma proposta pra este CPF/CNPJ");
+
+        Assert.state(resultList.size() <= 1, "É permitido apenas uma proposta pra este CPF/CNPJ");
 
         if(resultList.size() < 1) return true;
 
-        logger.info("Tentativa de entrada de mais de uma proposa pra o mesmo CPF/CNPJ " +
-                value.substring(value.length()-3) + " Tentativa de nova proposta");
         logger.info("Tentativa de entrada de mais de uma proposta para o mesmo CPF/CNPJ " +
                 value.substring(value.length()-3) + "Tentativa de nova proposta");
 

@@ -6,12 +6,12 @@ import java.lang.annotation.*;
 
 @Documented
 @Constraint(validatedBy = {UniqueValueValidator.class})
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD,ElementType.CONSTRUCTOR})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueValue {
-    String message() default "Error: Este valor deve ser único!";
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
-    String campo();
     Class<?> targetClass();
+    String campo();
+    String message() default "Valor repetido";
+    Class<?>[] groups() default { };
+    Class<? extends Payload>[] payload() default { };
 }

@@ -1,5 +1,8 @@
 package br.com.orangetalents.MultiServico.proposta;
+
+import br.com.orangetalents.MultiServico.compartilhado.UniqueValue;
 import br.com.orangetalents.MultiServico.validacao.CPFouCNPJ;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +11,7 @@ import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 @Entity
+@Table
 public class Proposta {
 
 	@Id
@@ -16,6 +20,7 @@ public class Proposta {
 
 	@NotBlank @CPFouCNPJ
 	@Column(unique = true)
+	@UniqueValue(targetClass = Proposta.class, campo = "documento")
 	private String documento;
 
 	@NotBlank @Email
@@ -31,12 +36,16 @@ public class Proposta {
 	@Positive @NotNull
 	private BigDecimal salario;
 
+	@Enumerated(EnumType.STRING )
+	private PropostaResultado resultado = PropostaResultado.NAO_ANALISADO;
+
 	@Deprecated
 	public Proposta() {
 	}
 
 	public Proposta(@NotBlank String documento, @NotBlank @Email String email, @NotBlank String nome,
 					@NotBlank String endereco, @Positive @NotNull BigDecimal salario) {
+
 		this.documento = documento;
 		this.email = email;
 		this.nome = nome;
@@ -47,6 +56,7 @@ public class Proposta {
 	public Long getId() {
 		return id;
 	}
+
 
 	public String getDocumento() {
 		return documento;
@@ -66,5 +76,13 @@ public class Proposta {
 
 	public BigDecimal getSalario() {
 		return salario;
+	}
+
+	public PropostaResultado getResultado() {
+		return resultado;
+	}
+
+	public void setResultado(PropostaResultado resultado) {
+		this.resultado = resultado;
 	}
 }
