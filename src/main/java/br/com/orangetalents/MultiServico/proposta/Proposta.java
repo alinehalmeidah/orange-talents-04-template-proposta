@@ -1,6 +1,5 @@
 package br.com.orangetalents.MultiServico.proposta;
 
-import br.com.orangetalents.MultiServico.compartilhado.UniqueValue;
 import br.com.orangetalents.MultiServico.validacao.CPFouCNPJ;
 
 import javax.persistence.*;
@@ -19,8 +18,6 @@ public class Proposta {
 	private Long id;
 
 	@NotBlank @CPFouCNPJ
-	@Column(unique = true)
-	@UniqueValue(targetClass = Proposta.class, campo = "documento")
 	private String documento;
 
 	@NotBlank @Email
