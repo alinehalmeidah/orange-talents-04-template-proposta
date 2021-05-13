@@ -86,3 +86,7 @@ public class Proposta {
 		this.resultado = resultado;
 	}
 }
+
+//		Para realizar as pesquisas no banco de dados usamos o metodo findbyId { já existe por Default }
+//		É usado o Optional pois ele pode ou não existir conforme a pesquisa realizada no banco de dados.
+//		O Collection é usado caso a pesquisa for com mais de um atributo no parametro. { Ex findByNameAndCpd (name e cpf) }
