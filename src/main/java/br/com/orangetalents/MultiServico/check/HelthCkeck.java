@@ -19,6 +19,6 @@ public class HelthCkeck implements HealthIndicator {
         details.put("endereço","127.0.0.1");
 
         return Health.status(Status.UP).withDetails(details).build();
-        
+
     }
 }

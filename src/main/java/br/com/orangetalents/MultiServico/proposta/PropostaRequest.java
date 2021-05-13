@@ -12,13 +12,13 @@ import java.math.BigDecimal;
 
 public class PropostaRequest {
 
-	@NotBlank @CPFouCNPJ
-	@UniqueValue(targetClass = Proposta.class, campo = "documento", message = "CPF ou CNPJ inválido, o valor deve ser único!")
+	@NotBlank
+	@CPFouCNPJ
+	@UniqueValue(targetClass = Proposta.class, campo = "documento")
 	private String documento;
 
 	@NotBlank
 	@Email
-	@UniqueValue(targetClass = Proposta.class, campo = "email", message = "E-mail inválido, o valor deve ser único!")
 	private String email;
 
 	@NotBlank
@@ -27,15 +27,14 @@ public class PropostaRequest {
 	@NotBlank
 	private String endereco;
 
-	@Positive
 	@NotNull
+	@Positive
 	private BigDecimal salario;
 
-	@Deprecated
-	public PropostaRequest() {}
 
 	public PropostaRequest(@NotBlank String documento, @NotBlank @Email String email, @NotBlank String nome,
-						   @NotBlank String endereco, @Positive BigDecimal salario) {
+						   @NotBlank String endereco, @NotNull @Positive BigDecimal salario) {
+
 		this.documento = documento;
 		this.email = email;
 		this.nome = nome;
@@ -45,6 +44,10 @@ public class PropostaRequest {
 
 	public String getDocumento() {
 		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
 	public String getEmail() {
@@ -64,6 +67,6 @@ public class PropostaRequest {
 	}
 
 	public Proposta toModel() {
-		return new Proposta(this.documento, this.email, this.endereco, this.nome, this.salario);
+		return new Proposta(documento, email, nome, endereco, salario);
 	}
 }

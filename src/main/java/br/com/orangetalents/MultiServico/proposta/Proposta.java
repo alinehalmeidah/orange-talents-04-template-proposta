@@ -36,6 +36,8 @@ public class Proposta {
 	@Enumerated(EnumType.STRING )
 	private PropostaResultado resultado = PropostaResultado.NAO_ANALISADO;
 
+	private String idCartao;
+
 	@Deprecated
 	public Proposta() {
 	}
@@ -78,6 +80,7 @@ public class Proposta {
 	public PropostaResultado getResultado() {
 		return resultado;
 	}
+
 
 	public void setResultado(PropostaResultado resultado) {
 		this.resultado = resultado;

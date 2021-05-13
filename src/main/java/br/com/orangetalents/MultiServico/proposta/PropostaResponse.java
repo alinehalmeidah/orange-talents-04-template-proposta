@@ -3,14 +3,13 @@ package br.com.orangetalents.MultiServico.proposta;
 import java.math.BigDecimal;
 
 public class PropostaResponse {
-	
-
 	private String documento;
 	private String email;
 	private String nome;
 	private String endereco;
-	private BigDecimal salario; 
-	
+	private BigDecimal salario;
+
+
 	public PropostaResponse(Proposta proposta) {
 		super();
 		this.documento = proposta.getDocumento();
@@ -24,18 +23,30 @@ public class PropostaResponse {
 	public String getDocumento() {
 		return documento;
 	}
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
 	public String getNome() {
 		return nome;
 	}
+
+
 	public String getEndereco() {
 		return endereco;
 	}
+
+
 	public BigDecimal getSalario() {
 		return salario;
 	}
-	
-	
+
+
+
+
+
+
 }

@@ -2,7 +2,6 @@ package br.com.orangetalents.MultiServico.proposta;
 
 import br.com.orangetalents.MultiServico.analise.AnaliseClienteFeing;
 import br.com.orangetalents.MultiServico.analise.AnaliseSolicitacaoRequest;
-import br.com.orangetalents.MultiServico.compartilhado.UniqueValueValidator;
 import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+
 @RestController
 @RequestMapping("/proposta")
 public class PropostaController {
@@ -24,7 +24,7 @@ public class PropostaController {
 	@Autowired
 	private  PropostaRepository propostaRepository;
 
-	private Logger logger = LoggerFactory.getLogger(UniqueValueValidator.class);
+	private Logger logger = LoggerFactory.getLogger(PropostaController.class);
 
 	@Autowired
 	private AnaliseClienteFeing analiseClienteFeing;
@@ -39,7 +39,7 @@ public class PropostaController {
 		propostaRepository.save(proposta);
 
 		return ResponseEntity
-				.created(builder.path("/propostas/{id}").buildAndExpand(proposta.getId()).toUri()).build();
+				.created(builder.path("/proposta/{id}").buildAndExpand(proposta.getId()).toUri()).build();
 	}
 
 	public void consultaFinanceira(Proposta proposta){
