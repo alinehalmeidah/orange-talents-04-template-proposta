@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface CartaoRepository extends JpaRepository<Cartao,Long> {
-    Optional<Cartao> findByPropostaId(Long propostaId);
+    Optional<Cartao> findByPropostaId(Long idProposta);
 }

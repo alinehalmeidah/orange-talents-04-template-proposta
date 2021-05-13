@@ -25,8 +25,7 @@ public class Cartao {
     @NotNull
     private Integer limite;
 
-    @NotNull @OneToOne
-    @JoinColumn(name = "proposta")
+    @NotNull @OneToOne @JoinColumn(name = "proposta")
     private Proposta proposta;
 
     @Enumerated(value = EnumType.STRING)
