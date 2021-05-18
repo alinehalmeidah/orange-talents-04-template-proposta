@@ -6,14 +6,14 @@ import java.time.LocalDateTime;
 
 public class CartaoResponse {
 
-    private Long id;
+    private String id;
     private String titular;
     private LocalDateTime emitidoEm;
     private Integer limite;
     private String idProposta;
 
 
-    public CartaoResponse(Long id, String titular, LocalDateTime emitidoEm, Integer limite, String idProposta) {
+    public CartaoResponse(String id, String titular, LocalDateTime emitidoEm, Integer limite, String idProposta) {
         this.id = id;
         this.titular = titular;
         this.emitidoEm = emitidoEm;
@@ -22,7 +22,7 @@ public class CartaoResponse {
     }
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -45,7 +45,7 @@ public class CartaoResponse {
 
 
     public Cartao toModel(Proposta proposta){
-        return new  Cartao(emitidoEm, titular, idProposta, limite, proposta);
+        return new  Cartao(id, emitidoEm, titular, limite, proposta);
     }
 
     @Override

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CartaoRepository extends JpaRepository<Cartao,Long> {
+public interface CartaoRepository extends JpaRepository<Cartao, String> {
     Optional<Cartao> findByPropostaId(Long idProposta);
 }

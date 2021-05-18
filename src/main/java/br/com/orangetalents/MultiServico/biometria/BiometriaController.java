@@ -1,6 +1,5 @@
 package br.com.orangetalents.MultiServico.biometria;
 
-
 import br.com.orangetalents.MultiServico.cartao.Cartao;
 import br.com.orangetalents.MultiServico.cartao.CartaoRepository;
 import br.com.orangetalents.MultiServico.compartilhado.ExecutorTransacao;
@@ -11,12 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/biometria")
@@ -32,7 +29,7 @@ public class BiometriaController {
 
     @PostMapping("/{id}")
     @Transactional
-    public ResponseEntity<?> salvarBiometria(@PathVariable("id") Long id,
+    public ResponseEntity<?> salvarBiometria(@PathVariable("id") String id,
                                              @RequestBody @Valid BiometriaRequest request,
                                              UriComponentsBuilder uriBuilder  ){
         Optional<Cartao> cartao = cartaoRepository.findById(id);

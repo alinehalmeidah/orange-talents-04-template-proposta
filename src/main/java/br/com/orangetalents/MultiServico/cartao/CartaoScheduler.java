@@ -19,21 +19,17 @@ public class CartaoScheduler {
 
     @Autowired
     private CartaoRepository cartaoRepository;
-
-
     private Logger logger = LoggerFactory.getLogger(CartaoScheduler.class);
 
     @Scheduled(fixedRateString = "${atualizacao.scheduler}")
     public void verificaSituacaoNoCartao() {
 
-        System.out.println("entrouuu");
+        System.out.println("Entrou");
 
         var propostasAprovadas = propostaRepository.findAll();
 
         for (var proposta : propostasAprovadas) {
-
             if(cartaoRepository.findByPropostaId(proposta.getId()).isEmpty()) {
-
                 try {
                     var response = cartaoClienteFeing.consultaCartao(proposta.getId());
                     var cartao = response.toModel(proposta);
@@ -42,7 +38,7 @@ public class CartaoScheduler {
                     logger.info("Cartão Salvo");
 
                 } catch (FeignException exception) {
-                    System.out.println(exception.contentUTF8());
+                    System.out.println(exception.getMessage());
                     logger.info("Exceção: Cartao - CartaoClienteFeing");
                 }
             }
@@ -50,5 +46,4 @@ public class CartaoScheduler {
         }
 
     }
-
 }

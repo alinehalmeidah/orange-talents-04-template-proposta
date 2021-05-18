@@ -2,7 +2,6 @@ package br.com.orangetalents.MultiServico.cartao;
 
 import br.com.orangetalents.MultiServico.proposta.Proposta;
 import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -12,15 +11,11 @@ import java.time.LocalDateTime;
 public class Cartao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     @NotNull
     private LocalDateTime emitidoEm;
     @NotBlank
     private String titular;
-
-    @NotBlank
-    private String numero;
 
     @NotNull
     private Integer limite;
@@ -35,18 +30,17 @@ public class Cartao {
     public Cartao() {
     }
 
-    public Cartao(@NotNull LocalDateTime emitidoEm, @NotBlank String titular, @NotBlank String numero,
-                       @NotNull Integer limite, @NotNull Proposta proposta) {
-
+    public Cartao(String id, @NotNull LocalDateTime emitidoEm, @NotBlank String titular,
+                  @NotNull Integer limite, @NotNull Proposta proposta) {
+        this.id = id;
         this.emitidoEm = emitidoEm;
         this.titular = titular;
-        this.numero = numero;
         this.limite = limite;
         this.proposta = proposta;
 
     }
 
-    public Long getId() {
+       public String getId() {
         return id;
     }
 
@@ -56,10 +50,6 @@ public class Cartao {
 
     public String getTitular() {
         return titular;
-    }
-
-    public String getNumero() {
-        return numero;
     }
 
     public Integer getLimite() {
