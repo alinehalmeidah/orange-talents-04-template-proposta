@@ -58,7 +58,7 @@ public class BloqueioController {
             cartao.setBloqueio(bloqueio);
             executorTransacao.atualizaEComita(cartao);
         } catch (FeignException e) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Falha ao bloquear o cartão.");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Bloqueio do Cartão não foi realizado");
         }
 
     }
