@@ -1,7 +1,9 @@
 package br.com.orangetalents.MultiServico.cartao;
 
+import br.com.orangetalents.MultiServico.boqueio.Bloqueio;
 import br.com.orangetalents.MultiServico.proposta.Proposta;
 import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -25,6 +27,9 @@ public class Cartao {
 
     @Enumerated(value = EnumType.STRING)
     private StatusCartao status = StatusCartao.ATIVO;
+
+    @OneToOne(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private Bloqueio bloqueio;
 
     @Deprecated
     public Cartao() {
@@ -62,6 +67,15 @@ public class Cartao {
 
     public StatusCartao getStatus() {
         return status;
+    }
+
+    public boolean verificaBloqueado() {
+        return this.status.equals(StatusCartao.BLOQUEADO);
+    }
+
+    public void setBloqueio(Bloqueio bloqueio) {
+        this.bloqueio = bloqueio;
+        this.status = StatusCartao.BLOQUEADO;
     }
 
 
