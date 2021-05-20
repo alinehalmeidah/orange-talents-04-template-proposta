@@ -1,6 +1,7 @@
 package br.com.orangetalents.MultiServico.cartao;
 
 import br.com.orangetalents.MultiServico.boqueio.BloqueioRequest;
+import br.com.orangetalents.MultiServico.viagem.AlertaViagemRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -16,5 +17,8 @@ public interface CartaoClienteFeing {
 
     @PostMapping("/{id}/bloqueios")
     public void bloqueioCartao(@PathVariable String id, @RequestBody @Valid BloqueioRequest request);
+
+    @PostMapping("/{id}/avisos")
+    public void avisarViagem(@PathVariable String id, @RequestBody @Valid AlertaViagemRequest request);
 }
 

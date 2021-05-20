@@ -2,11 +2,12 @@ package br.com.orangetalents.MultiServico.cartao;
 
 import br.com.orangetalents.MultiServico.boqueio.Bloqueio;
 import br.com.orangetalents.MultiServico.proposta.Proposta;
+import br.com.orangetalents.MultiServico.viagem.AlertaViagem;
 import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name ="cartao")
@@ -30,6 +31,10 @@ public class Cartao {
 
     @OneToOne(mappedBy = "cartao", cascade = CascadeType.MERGE)
     private Bloqueio bloqueio;
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private Set<AlertaViagem> viagens;
+
 
     @Deprecated
     public Cartao() {
@@ -76,6 +81,11 @@ public class Cartao {
     public void setBloqueio(Bloqueio bloqueio) {
         this.bloqueio = bloqueio;
         this.status = StatusCartao.BLOQUEADO;
+    }
+
+    public void setViagem(AlertaViagem viagem) {
+        this.viagens.add(viagem);
+        this.status = StatusCartao.EM_VIAGEM;
     }
 
 
