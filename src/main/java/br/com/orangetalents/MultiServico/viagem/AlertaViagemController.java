@@ -37,7 +37,7 @@ public class AlertaViagemController {
             logger.warn("Cartão {} inesxistente=", id);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cartão não encontrado");
         }
-
+        //------------> Aviso viagem abaixo <---------
         try {
             AlertaViagem novoAlertaViagem = request.toModel(cartao.get(), servletRequest.getLocalAddr(),
                     servletRequest.getHeader("User-Agent"));
