@@ -6,11 +6,11 @@ import javax.persistence.Converter;
 
 @Converter
 public class OfuscadorEncrypt implements AttributeConverter<String, String> {
-
+    @SuppressWarnings("deprecation")
     @Override
     public String convertToDatabaseColumn(String documento) {
         try {
-            return Encryptors.queryableText("${proposta.ofuscar.dados}", "12345678").encrypt(documento);
+            return Encryptors.queryableText("${proposta.ofuscar.dados}", "senha").encrypt(documento);
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
@@ -19,7 +19,7 @@ public class OfuscadorEncrypt implements AttributeConverter<String, String> {
     @Override
     public String convertToEntityAttribute(String documento) {
         try {
-            return Encryptors.queryableText("${proposta.ofuscar.dados}", "12345678").decrypt(documento);
+            return Encryptors.queryableText("${proposta.ofuscar.dados}", "senha").decrypt(documento);
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
